@@ -86,23 +86,6 @@ archivePrefix = {arXiv},
 }
 
 
-@ARTICLE{DataAugmentation,
-       author = {{Hern{\'a}ndez-Garc{\'\i}a}, Alex and {K{\"o}nig}, Peter},
-        title = "{Data augmentation instead of explicit regularization}",
-      journal = {arXiv e-prints},
-     keywords = {Computer Science - Computer Vision and Pattern Recognition},
-         year = 2018,
-        month = jun,
-          eid = {arXiv:1806.03852},
-        pages = {arXiv:1806.03852},
-archivePrefix = {arXiv},
-       eprint = {1806.03852},
- primaryClass = {cs.CV},
-       adsurl = {https://ui.adsabs.harvard.edu/abs/2018arXiv180603852H},
-      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
-}
-
-
 @ARTICLE{FastText,
        author = {{Bojanowski}, Piotr and {Grave}, Edouard and {Joulin}, Armand and
          {Mikolov}, Tomas},
@@ -350,3 +333,49 @@ archivePrefix = {arXiv},
 }
 
 
+@ARTICLE{PseudoLabel,
+author = {Lee, Dong-Hyun},
+year = {2013},
+month = {07},
+pages = {},
+title = {Pseudo-Label : The Simple and Efficient Semi-Supervised Learning Method for Deep Neural Networks},
+journal = {ICML 2013 Workshop : Challenges in Representation Learning (WREPL)}
+}
+
+@book{Semi-Supervised-Book,
+author = {Chapelle, Olivier and Sch\"{o}lkopf, Bernhard and Zien, Alexander},
+title = {Semi-Supervised Learning (Adaptive Computation and Machine Learning)},
+year = {2006},
+isbn = {0262033585},
+publisher = {The MIT Press}
+}
+
+@book{Goodfellow-et-al-2016,
+    title={Deep Learning},
+    author={Ian Goodfellow and Yoshua Bengio and Aaron Courville},
+    publisher={MIT Press},
+    note={\url{http://www.deeplearningbook.org}},
+    year={2016}
+}
+
+@ARTICLE{Dropout,
+author = {Srivastava, Nitish and Hinton, Geoffrey and Krizhevsky, Alex and Sutskever, Ilya and Salakhutdinov, Ruslan},
+year = {2014},
+month = {06},
+pages = {1929-1958},
+title = {Dropout: A Simple Way to Prevent Neural Networks from Overfitting},
+volume = {15},
+journal = {Journal of Machine Learning Research}
+}
+
+@ARTICLE{NPLM,
+author = {Bengio, Y. and Ducharme, Réjean and Vincent, Pascal},
+year = {2000},
+month = {01},
+pages = {932-938},
+title = {A Neural Probabilistic Language Model},
+volume = {3},
+journal = {Journal of Machine Learning Research},
+doi = {10.1162/153244303322533223}
+}
+  
