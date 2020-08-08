@@ -720,3 +720,4 @@ http://requirejs.org/docs/errors.html#scripterror
 1596564459064	Marionette	INFO	Listening on port 37607
 1596564459164	Marionette	WARN	TLS certificate errors will be ignored for this session
 1596569705783	Marionette	INFO	Stopped listening on port 37607
+1596703854600	Marionette	INFO	Stopped listening on port 36837
