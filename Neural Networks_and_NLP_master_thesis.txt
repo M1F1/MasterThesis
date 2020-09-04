@@ -1,0 +1,290 @@
+\section{Neural Networks}
+    Neural networks have been the subject of great reaserch for many decades, due to the desire to understand the brain, and willingness to build machines that can generalize knowledge.
+    The term ‘neural network’ has emerge in aspirations to find mathematical formalism
+    describing learning procedure in biological structures (McCulloch and Pitts,
+    1943; Widrow and Hoff, 1960; Rosenblatt, 1962; Rumelhart et al., 1986). 
+    It has been used very broadly to named variety of different models which try to mimic cognitive processes.
+    By adding more layers or more units within a layer (increasing capacity of the model) and given suﬃciently large datasets of labeled training examples, neural networks have turned to be the de facto model
+    for solving relativly easy problems that human can rapidly figure out (in such cognitive domains as computer vision, speech recognition and natural language processing ). Their success is partially
+    attributable to their visable scalability , i.e., the empirical
+    observation that training them on larger datasets produces
+    better performance [25 , 17 , 35 , 46 , 34 , 18 ], 
+    In this chapter, there will be a brief summary of specific neural networks's architectures that are essentially working technologies and have proven to solve practical problems in industry. Some of those architecture solutions will be used in the experimental part of this thesis.
+    \subsection{Multilayer Perceptrons Networks}
+            Feed forward neural network model also known as Multi Layer perceptron can be described as a series
+        of functional transformations. MLP is organized into groups of units called layers which are arranged in a chain structure, with each layer being a function of the layer that preceded it. In such described structure, the ﬁrst layer
+        is given by
+        
+        h(1)= g(1(1) b(1)
+        where j = 1, . . . , M, and the superscript (1) indicates that the corresponding parameters
+        are in the first ‘layer’ of the network. w(1)ji are called weights and the parameters w(1)
+        b - biases.
+        The nonlinear functions h(·) are generally chosen to be Relu functions such as LeakRealu, maxRealu
+        
+        the second layer is given by
+        
+        h(2)= g(2)(2)(1)+ b(2);
+        
+        The main architectural considerations is choosing the depth of the network and the width of each layer.
+        
+        When MLP is filled with input x and produced an output ˆy, information move forward through the network. The input x provides the initial signal that then propagates up to the hidden units at each layer creating temporaly representation of input and ﬁnally algorithm produces ˆy. This whole process  is called forward propagation. During training,
+        forward propagation will wont stop until it produces a scalar value of previously choosen function cost J(omega) .
+        By using  procedure called the back-propagation algorithm (Rumelhart et al., 1986a) (which allow the information from the cost to flow backward through the network) it is possible to use computed gradients and changed model's parameters in favour to minimize train error function (for classification it will be cross-entropy).
+        Feedforward networks can be seen as eﬃcient nonlinear function approximators
+        based on using gradient descent optimization to minimize the error in a function approximation.
+        
+        \cite{Goodfellow-et-al-2016}
+    \subsection{Convolutional Networks}
+            Convolutional networks have played an important role in the history of deep
+        learning. They are a key example of a successful application of insights obtained
+        by studying the brain to machine learning applications. They were also some of
+        the ﬁrst deep models to perform well, long before arbitrary deep models were
+        considered viable.
+        
+        A convolutional neural networks or CNNs, are a specialized kind of MLP for processing data
+        that has a known grid-like topology and are particularly well suited to 1d signals like speech or text \cite{Convolution}, or 2d signals like images.
+        A typical layer of a convolutional network consists of three stages (see ﬁgure 9.7).
+        In the ﬁrst stage, the layer performs several mathematical operations called convolutions on the subregions of the representation of image using kernel to produce a
+        set of linear activations (units) which is called feature map.
+        During this procedure kernel is constrained to share the same weights values over particular feature map.
+        
+         Intuitively, the effect of such kernel's parameter tying is that any useful features that are “discovered” in some portion of the image can be re-used everywhere else without having to be independently learned.
+        
+        
+        For example, if we use a two-dimensional image
+        I as our input, we probably also want
+        to use a two-dimensional kernel K
+        to get an unit F at feature map's position i,j.
+        
+        F(i, j) = (K *I)(i, j) =m n I(i + m, j + n)K(m, n)
+        convolution (without kernel ﬂipping)
+        
+         In the second stage, each linear activation is run through
+        a nonlinear activation function, such as the rectiﬁed linear activation function .
+        
+        In the third stage, we use a
+        pooling function to modify the output of the layer further.
+        
+        A pooling function replaces the output of the net at a certain location with a summary statistic of the nearby outputs. For example, the max pooling (Zhou and Chellappa, 1988) operation reports the maximum output within a rectangular neighborhood.
+        In all cases, pooling helps to make the representation approximately invariant to small translations of the input. Invariance to translation means that if we translate the input by a small amount, the values of most of the pooled outputs
+        do not change.
+        
+        In a practical architecture, there may be many stacked layers with convolutions, nonlinear activations and pooling strategies.  The final layer of the network would typically be a feed forward layer, with a softmax output nonlinearity in the case of
+        multiclass classification.
+            
+    \subsection{Recurrent Networks}
+            If  we  allow  feedback  connections in the MLP, the new model emerge known as recurrent neural network (RNN).
+        RNN is a neural network that is specialized for processing a sequence of values x(1), . . . , x(t). Most recurrent networks can also process sequences of variable length
+        and scale to much longer sequences than would be practical for networks without sequence-based specialization.
+        diagram of reccurent networks
+        diagram
+        \paragraph{LSTM}
+            The most competent sequence models used in pragmatic applications are called gated RNNs. These include the
+            long short-term memory and networks based on the gated recurrent unit.
+            (LSTM) model citeHochreiter and Schmidhuber1997.
+            is the idea of introducing self-loops to create paths where the gradient
+            can ﬂow for long durations. That special aspect is a main contribution of the initial long short-term memory.
+            diagram
+        
+        \paragraph{BI-RNN}
+
+            As the name suggests, bidirectional RNNs associate an RNN that starts it's movement in the begininng of sequence and go forward through time, with another RNN that
+            moves backward through time, ending at the beginning of the sequence.
+            The combined outputs are the predictions of the reference-given targets. This method has been proven to be especially useful when blended with LSTM RNNs.
+            
+            Such RNN models are currently one of the best approach for language modeling (i.e., performing word prediction in natural language) (Tomas et al. 2011), significantly outperforming the standard n-gram-based methods which will discussed in next chapter.
+            diagram
+    
+    \subsection{Attention Mechanism}
+            Using a ﬁxed-size representation to capture all the semantic details of a very
+        long sentence  is very diﬃcult. It can be achieved by training a
+        suﬃciently large RNN well enough and for long enough, as demonstrated by Cho
+        et al. (2014a) and Sutskever et al. (2014). A more eﬃcient and modern approach, however, is
+        to read the whole sentence or paragraph (to get the context and the gist of what
+        is being expressed), then produce the translated words one at a time, each time
+        focusing on a diﬀerent part of the input sentence to gather the semantic details
+        required to produce the next output word. That is exactly the idea that Bahdanau
+        et al. (2015) ﬁrst introduced. The attention mechanism used to focus on speciﬁc
+        parts of the input sequence at each time step is illustrated in ﬁgure
+        /figure{}
+        
+         attention mechanism, as introduced by Bahdanau et al. (2015) in the context of machine
+        translation  , is
+        essentially a weighted average. A context vector c is formed by taking a weighted average of feature vectors h(t) with weights
+        alfa(t). In some applications, the feature vectors h are hidden units of a neural network, but they may also be raw input to the model. The weights alfa (t) are produced by the model itself. They are usually values in the interval [0,1] and are intended to concentrate around just one h(t) so that the weighted average
+        approximates reading that one speciﬁc time step precisely. The weights alfa(t) are usually produced by applying a softmax function to relevance scores emitted by another portion of the model.
+        diagram
+        
+        ey, Value and Query
+        One of the modern efficient attention mechanism which was used in many NMT and language modelling tasks is called scalaed dot product attenion.
+        It is used in NMT model called transformer. The transformer views the encoded representation of the input as a set of key-value pairs, (K,V)
+        , both of dimension n (input sequence length); in the context of NMT, both the keys and values are the encoder hidden states. In the decoder, the previous output is compressed into a query (Q of dimension m
+        formula
+        ) and the next output is produced by mapping this query and the set of keys and values.
+        
+        The transformer adopts the scaled dot-product attention: the output is a weighted sum of the values, where the weight assigned to each value is determined by the dot-product of the query with all the keys:
+        Attention( Q,K,V )=softmax( QKTn sqrt )V
+        This mechanism was used in crucail language model BERT which will be discused in following chapter.
+
+        \cite{Attention}
+    \subsection{Regularization methods for NN}
+        Beside foremention weight decay method there are many methods of regularization specially dedicated to neural networks. In this section there will discussed two commonly used methods early stopping and dropout also used in experimental part of this thesis . Using the unlabel data in semi supervised learning framework can also be trait as regularizaton method and those methods will be discussed in chapter [7]
+    
+        early stoping
+
+
+        \subsubsection{Early stopping}
+            When training large neural networks (deep networks) with sufficient representational capacity to overﬁt
+            the task, we often observe that training error decreases steadily over time, but
+            validation set error begins to rise again.
+            Simple way to preventthis is called early stopping, which means stopping the training procedure when the error on the validation set first starts to increase.
+            
+            This means we can obtain a model with better validation set error (and thus,
+            hopefully better test set error) by returning to the parameter setting at the point in
+            time with the lowest validation set error. Every time the error on the validation set
+            improves, we store a copy of the model parameters. When the training algorithm
+            terminates, we return these parameters, rather than the latest parameters. The
+            algorithm terminates when no parameters have improved over the best recorded
+            validation error for some pre-speciﬁed number of iterations. This procedure is
+            speciﬁed more formally in algorithm 7.1.
+            This strategy is known as
+            early stopping
+            . It is probably the most commonly
+            used form of regularization in deep learning. Its popularity is due to both its
+            eﬀectiveness and its simplicity
+            One way to think of early stopping is as a very eﬃcient hyperparameter selection
+            algorithm. In this view, the number of training steps is just another hyperparameter.
+
+            citeEarlyStopping
+        \subsubsection{Dropout}
+            Bagging (short for bootstrap aggregating) is a technique for reducing general-
+            ization error by combining several models (Breiman, 1994). The idea is to train
+            several diﬀerent models separately, then have all the models vote on the output for
+            test examples. This is an example of a general strategy in machine learning called
+            model averaging. Techniques employing this strategy are known as ensemble methods.
+            Dropout
+            (Srivastava et al., 2014) provides a computationally inexpensive but
+            powerful method of regularizing a broad family of models. To a ﬁrst approximation,
+            dropout can be thought of as a method of making bagging practical for ensembles
+            of very many large neural networks. Bagging involves training multiple models
+            and evaluating multiple models on each test example. This seems impractical
+            when each model is a large neural network, since training and evaluating such
+            networks is costly in terms of runtime and memory. It is common to use ensembles
+            of ﬁve to ten neural networks—Szegedy et al. (2014a) used six to win the ILSVRC—
+            but more than this rapidly becomes unwieldy. Dropout provides an inexpensive
+            approximation to training and evaluating a bagged ensemble of exponentially many
+            neural networks. Speciﬁcally, dropout trains the ensemble consisting of all subnetworks that
+            can be formed by removing nonoutput units from an underlying base network, as
+            illustrated in ﬁgure 7.6. In most modern neural networks, based on a series of
+            aﬃne transformations and nonlinearities, we can eﬀectively remove a unit from a
+            network by multiplying its output value by zero.
+            \cite{Dropout}
+            
+\section{Natural Language Processing}
+
+        NLP is the use of human languages, such as
+        English or French, by a computer. Computer programs typically read and emit
+        specialized languages designed to allow eﬃcient and unambiguous parsing by simple
+        programs. More naturally occurring languages are often ambiguous and defy formal
+        description.  To start process natural language one have to create its representation.
+        This dependence on representations is a general phenomenon that appears
+        throughout computer science and even daily life. In computer science, operations
+        such as searching a collection of data can proceed exponentially faster if the collection is structured and indexed intelligently. People can easily perform arithmetic on Arabic numerals but ﬁnd arithmetic on Roman numerals much more time consuming. It is not surprising that the choice of representation has an enormous
+        eﬀect on the performance of machine learning algorithms.
+        Many artiﬁcial intelligence tasks can be solved by designing the right set of features to extract for that task, then providing these features to a simple machine learning algorithm. 
+        
+        One solution to this problem is to use machine learning to discover not only
+        the mapping from representation to output but also the representation itself.
+        This approach is known as representation learning and becamoe crucial for effectivity of machine learning algorithms in nlp domain.
+        
+        The history of natural language processing is marked by transitions in the
+        popularity of diﬀerent ways of representing the input to the model. Following
+        this early work on symbols and words, some of the earliest applications of neural
+        networks to NLP (Miikkulainen and Dyer, 1991; Schmidhuber and Heil, 1996) represented the input as a sequence of characters.
+        Bengio et al. (2001) returned the focus to modeling words and introducedneural language models, which produce interpretable word embeddings. These neural models have scaled up from deﬁning representations of a small set of symbols
+        in the 1980s to millions of words (including proper nouns and misspellings) in
+        modern applications. 
+        
+        As mentioned above Many NLP applications are based on language models that deﬁne a probability distribution over sequences
+        of words, characters, or bytes in a natural language.
+        As with the other applications discussed in this chapter, very generic neural network techniques can be successfully applied to natural language processing. To achieve excellent performance and to scale well to large applications, however,
+        some domain-speciﬁc strategies become important. To build an eﬃcient model of natural language, we must usually use techniques that are specialized for processing sequential data. In many cases, we choose to regard natural language as a sequence
+        of words, rather than a sequence of individual characters or bytes. Because the total number of possible words is so large, word-based language models must operate on an extremely high-dimensional and sparse discrete space. Several strategies have been developed to make models of such a space eﬃcient, in both a computational and a statistical sense.
+        
+        
+     \subsection{language models with n-gram feature representations}
+        deﬁnes a probability distribution over sequences of tokens
+        in a natural language. Depending on how the model is designed, a token maybe a word, a character, or even a byte. Tokens are always discrete entities. The earliest successful language models were based on models of ﬁxed-length sequences of tokens called n-grams. An n-gram is a sequence of n tokens.
+        Models based on n-grams deﬁne the conditional probability of the
+        n-th token given the preceding n1 tokens. The model uses products of these conditional distributions to deﬁne the probability distribution over longer sequences:
+        
+        P (x1, . . . , xt) = P (x1, . . . , xn1)t t=n P (xt| x t-n+1, . . . , xt-1).
+        
+        Training n-gram models is straightforward because the maximum likelihood estimate can be computed simply by counting how many times each possible n-gram occurs in the training set. Models based on n-grams have been the core building block of statistical language modeling for many decades. citeTFIDF
+        Classical n-gram models are particularly vulnerable to the curse of dimensionality. There are |V| n possible n-grams and |V|
+        is often very large. Even with a massive training set and modest
+        n most n-grams will not occur in the training set.
+        One way to view a classical n-gram model is that it is performing nearest neighbor lookup. In other words, it can be viewed as a local nonparametric predictor, similar to k-nearest neighbors. The statistical problems facing these extremely local pre-
+        dictors are described in section 5.11.2. The problem for a language model is even
+        more severe than usual, because any two diﬀerent words have the same distance
+        from each other in one-hot vector space. It is thus diﬃcult to leverage much
+        information from any “neighbors”—only training examples that repeat literally the
+        same context are useful for local generalization. To overcome these problems, a
+        language model must be able to share knowledge between one word and other
+        semantically similar words.
+    
+    \subsection{Neural language models}
+
+        NLMs, are a class of language model designed
+        to overcome the curse of dimensionality problem for modeling natural language
+        sequences by using a distributed representation of words (Bengio et al., 2001).
+        Unlike class-based n-gram models, neural language models are able to recognize
+        that two words are similar without losing the ability to encode each word as distinct
+        from the other. Neural language models share statistical strength between one
+        word (and its context) and other similar words and contexts. The distributed
+        representation the model learns for each word enables this sharing by allowing the
+        model to treat words that have features in common similarly. For example, if the word dog and the word cat
+        map to representations that share many attributes, then
+        sentences that contain the word cat can inform the predictions that will be made by the model for sentences that contain the word
+        dog, and vice versa. Because there are many such attributes, there are many ways in which generalization can happen,
+        transferring information from each training sentence to an exponentially large number of semantically related sentences. The curse of dimensionality requires the model to generalize to a number of sentences that is exponential in the sentence
+        length. The model counters this curse by relating each training sentence to an exponential number of similar sentences.
+        We sometimes call these word representations word embeddings
+        . In this interpretation, we view the raw symbols as points in a space of dimension equal to the vocabulary size. The word representations embed those points in a feature
+        space of lower dimension. In the original space, every word is represented by a one-hot vector, so every pair of words is at Euclidean distance sqrt2 from each other. In the embedding space, words that frequently appear in similar contexts
+        (or any pair of words sharing some “features” learned by the model) are close to each other. This often results in words with similar meanings being neighbors.
+        
+        Common used words representations created by Neural language models.
+        \subsubsection{NNLM}
+            One of the first succesful and now classic neural probabilistic language model was presented in.
+            The authors propose architecture that jointly learn representation (word embeddings) and languge model itself, using lookup table, feed forward layer and softmax layer. The main drawback of the model was that the training speed and models predictions almost scales linearly with the number of words in the vocabulary (because the scores hi assiciated with each word i in the vocabulary must be computed for properly normalizing probabilities). Model coudnt incresei its capacity without increaign tarining time  to deal with bigger text corpora.
+           
+            \cite{NPLM}
+        \subsubsection{Word2Vec algorithms family}
+            The huge improvement of previously described method for crteate word embedidngs is Word2Vec pacakede introduce by . W2V is paeing  package containing two neural architecutres creating  word embeddings in unsupervised representatiol learning manner. It  become very popular and scalable method due to it's simplicty and efficiency.
+            The main idea was to change an language model from predicting probability of sequence to predicting words or word (depending on the architecure) in the "window" of  context words.
+            After conducting experiments skip-gram model proved to be better than cbow but at the price of training time.
+            diagram
+            CBOW and Skipgra
+            enriching skipgram with fasttext
+            The significatn improvemtn of skipgram model was made by . FastText. Method incorporate morpoholigacl imfornatio into to the process of learning embeddings. Instead of create vector representation for a single word, it is divided into n-gram, and every n-gram gets its own vector representation. That decreate the vocabulary size so and speeds up convergence for learning extrinsic tasks (such as text classification using produced embeddings). It also gives better resultst in NLP benchmark thanpure skipgram model.
+            Usually word embedidng genearete from W2v models were used with reccurent neural architecuters such as GRU or LSTM networks and it'ts bi=directional varations to depict seqencyialy nature of text and due to its gets better results.
+            diagrams
+                \cite{W2V}
+               
+        \subsubsection{BERT}
+            Relatively new approach for lanugage modelling was made by prposing BERT. It improve recent state of the art in many benchamrk tasks.
+            BERT is an acronum of Bidirectional Encoder Representations from Transformers. So due to its name BERT achitecutre is based on the decoder part of attenion mechanism (previously describe in this thesis) based Transformer \cite{Attention} model used for machine translation. This solution is unique to its two language model tasks : masked MLM- or cloze task and NSP - next sentence prediction.
+            MLM - training data generator choose 15 of the token posions at random for prediciton if the ith token is chosen w is replased with [MASK] token  80 of the time, a random token 10 and unchange token 10 80 of all tokens a
+            NSP -  50 of sentence B isNext sentence and 50 is not. 
+            BERT was pretrain on BooksCorpus and Enslish Wikipedia
+            
+            diagram attention encoder mechanism
+            
+            There are two ways of using BERT - fine tuning and feature based.
+            fine tuning is based on using not only sentence embedding s to down-stram tasks but all BERT parameters to initialize end task model on with paratemrs. Fine tuning is realitively inexpensive in comparison with pre-training, it possible to get state of the art scores with few hours training on GPU
+            Feature based approach relies on using previosuly pretrained BERT architecture to produce bert embeddings input sentece and then for example used it to classifcation tasks.
+            
+                attention mechanism
+                modern language models such as BERT 
+                \cite{BERT} 
