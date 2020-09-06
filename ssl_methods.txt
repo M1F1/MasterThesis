@@ -1,0 +1,46 @@
+	\subsubsection{II model Temporal Ensambling}
+   
+    	Stability or TS for short) [39 ] or the “ II--Model” temoporal ensambling [36 ].
+    	which introduce self-ensembling, where we form a consensus prediction
+    	of the unknown labels using the outputs of the network-in-training on different
+    	epochs, and most importantly, under different regularization and input augmentation
+    	conditions. This ensemble prediction can be expected to be a better predictor
+    	for the unknown labels than the output of the network at the most recent training
+    	epoch, and can thus be used as a target for training.
+    	graphs - ilustration
+    	
+	\paragraph{II model}
+    	description 
+    	The structure of  -model is shown in Figure 1 (top), and the pseudocode in Algorithm 1. During
+    	training, we evaluate the network for each training input xi  twice, resulting in prediction vectors zi
+    	 and ~zi . Our loss function consists of two components. The first component is the standard crossentropy
+    	loss, evaluated for labeled inputs only. The second component, evaluated for all inputs,
+    	penalizes different predictions for the same training input xi  by taking the mean square difference
+
+	\paragraph{Temporal Ensambling}
+    	description
+    	Analyzing how the  -model works, we could equally well split the evaluation of the two branches in
+    	two separate phases: first classifying the training set once without updating the weights , and then
+    	training the network on the same inputs under different augmentations and dropout, using the just
+    	obtained predictions as targets for the unsupervised loss component. As the training targets obtained
+    	this way are based on a single evaluation of the network, they can be expected to be noisy. Temporal
+    	ensembling alleviates this by aggregating the predictions of multiple previous network evaluations
+    	into an ensemble prediction with recent epochs having larger weight than distant epochs.  . It also lets us evaluate the network only once during training, gaining
+    	an approximate 2x speedup over the  II-model.
+    	
+    \subsubsection{Mean Teacher}
+    	temporal ensambling maintains an exponential moving
+    	average of label predictions on each training example, and penalizes predictions
+    	that are inconsistent with this target. 
+    	because the targets change only once
+    	per epoch, Temporal Ensembling becomes unwieldy when learning large datasets.
+    	To overcome this problem, we propose Mean Teacher, a method that averages
+    	model weights instead of label predictions.
+    	 Since the teacher model is an average of consecutive student models, we call this the
+    	Mean Teacher method (Figure 2).
+    	 As an additional benefit, Mean Teacher
+    	improves test accuracy and enables training with fewer labels than Temporal
+    	Ensembling.
+    	illustration 
+    	        \cite{MT}
+	
