@@ -1,0 +1,34 @@
+﻿Programowanie dynamiczne
+
+
+1. programowanie dynamiczne jest zwykle stosowane do problemów optymalizacyjnych
+
+2. proces projektowania algorytmu:
+	a. scharakteryzowanie struktury optymalnego rozwiązania
+		pomocny może być graf podproblemów
+		wzorzec poszukiwania optymalnej podstruktury:
+			1. Pokazuje się, że rozwiązanie problemu polega między innymi na dokonaniu wyboru. Takie wybory pozostawiają jeden lub więcej podproblemów do rozwiązania.
+			2. Zakłada się, że wśród możliwych wyborów jest ten, który doprowadzi do optymalnego rozwiązania. Nie musimy się troszczyć w jaki sposób dokonać właściwego wyboru. Musimy tylko być pewni, że właściwy wybór jest wśród rozważanych.
+			3. Dla danego wybory określa się wynikające z niego podproblemy oraz charakteryzuje się jak najlepiej całą przestrzeń podproblemów.
+			4. Pokazuje się za pomocą techniki “wytnij I wklej”, że rozwiązanie podproblemów składające się na optymalne rozwiązanie same w sobie muszą być optymalne. Dowodzi się tego przez założenie, że rozwiązanie podprobleu nie jest optymalne, I doprowadzenie do sprzeczności. “Wycinając” nieoptymalne rozwiązanie podproblemu I “wklejając” w to miejsce rozwiązanie optymalne, wskazujemy, że jesteśmy w stanie uzyskać lepsze rozwiązanie pierwotnego problemu I przez to zaprzeczamy załozeniu, jakoby posiadaliśmy już optymalne roziwązanie. Jeśli mamy do czynienia z więcej niż jednym podproblemem, są one najczęsciej tak zbliżone, że argument wynikający z metody “wytnij I wklej” może być łatwo zmodyfikowany dla pozostałych. 
+		
+	b. rekurencyjne zdefiniowanie wartości (kosztu) optymalnego rozwiązania
+	c. obliczenie wartości optymalnego rozwiązania metodą wstępującą
+	d. skonstruowanie optymalnego rowiązania na podstawie wyników wcześniejszych obliczeń
+
+3. przykładowe problemy:
+	a. przecięcie pręta
+	b. optymalne mnożenie macierzy pod kątem ilości mnożeń skalarnych
+	c. znajdowanie najdłuższego wspólnego podciągu np. W sekwencji DNA
+
+4. rodzaje implementacji:
+	a. rekurencyjna implementacja zstępująca - 
+		ulepszona poprzez spamiętywanie
+		
+	b. implementacja wstępująca – programowanie dynamiczne
+
+5. wymagania:
+	a. optymalna podstruktura – optymalne rozwiązanie jest funkcją optymalnych rozwiązań podproblemów
+	b. mała przestrzeń istotnie różnych podproblemów - 
+	 	czyli jeśli algorytm rekurencyjny wielokrotnie oblicza rozwiązanie tego samego podproblemu to mówimy, że problem optymalizacyjny ma własność wspólnych podproblemów
+	c. niezależnośc podproblemów – rozwiązanie jednego podproblemu nie wpływa na rozwiązanie innego podproblemu tego samego problemu pierwotnego.
