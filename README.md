@@ -1,5 +1,5 @@
-# MasterThesis
-Abstract:
+# Text-classification-using-the-semi-supervised-learning-methods 
+Abstract:<br>
 The work is devoted to the issue of semi-supervised learning for the tasks of text classification. One of the aims is to test the semi-supervised learning algorithm called FixMatch in the NLP domain. This method is considered to be state-of-the-art for problems of image classification with very few training labeled examples. In order to test FixMatch for text classification, it is necessary to create realistic augmentations, which will be proposed in the following work. In order to evaluate the FixMatch properly, two other popular SSL methods (VAT, Pseudo-Label) and supervised model, will be trained as comparative baselines. Another goal of the work is to check how the result on the test set are affected by training process and selection of hyperparameters using different ratio of the training and validation set sizes. The last goal will be to examine the quality of the chosen hyperparameter on small validation sets, also by checking the results of the SLL methods used with more labelled and unlabeled data. 
 
 
